@@ -1,0 +1,11 @@
+**Planet**
+- Planet name: Stoneplace (WOI-02026b)
+- Year lenght: 400 days (10,000 hours)
+- Day lenght: 25 hours
+- 1 sun (WOI-2026a)
+- 1 moon (WOI-2026b I)
+- Magnetosphere: yes
+- Gravity: 0.8 the gravity of Earth.
+- Axial tilt: 21 grades
+- Atmosphere composition: 71 Nitrogen, 28 oxygen, 0.8 Argon, 0.1 carbon dioxide, 0.1 methane and hydrogen.
+- 
