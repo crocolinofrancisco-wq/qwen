@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Atlas Forge — World Generator</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header><div class="brand"><span class="mark">◒</span><div><b>ATLAS FORGE</b><small>PROCEDURAL PLANET STUDIO</small></div></div><div class="header-actions"><span id="status" class="status">READY TO GENERATE</span><button class="secondary" id="randomize">Random seed</button><button id="generate">Generate world <span>↗</span></button></div></header>
+<main>
+<aside class="sidebar">
+  <section class="intro"><p class="eyebrow">WORLD SPECIFICATION</p><h1>Stoneplace</h1><p>Generate a spherical tectonic world, then inspect its equirectangular projection.</p></section>
+  <div class="control-group"><div class="group-title">Core <span>01</span></div>
+    <label>Planet name<input id="planetName" value="Stoneplace (WOI-02026b)"></label>
+    <div class="pair"><label>Seed<input id="seed" type="number" value="2026026"></label><label>Axial tilt <output id="tiltOut">21°</output><input id="tilt" type="range" min="0" max="45" value="21"></label></div>
+    <div class="pair"><label>Map width<select id="width"><option value="240">240 px</option><option value="360" selected>360 px</option><option value="540">540 px</option></select></label><label>Map height<select id="height"><option value="120">120 px</option><option value="180" selected>180 px</option><option value="270">270 px</option></select></label></div>
+  </div>
+  <div class="control-group"><div class="group-title">Tectonics <span>02</span></div>
+    <label>Major plates <output id="platesOut">13</output><input id="plates" type="range" min="4" max="28" value="13"></label>
+    <label>Continental fraction <output id="landOut">43%</output><input id="land" type="range" min="20" max="75" value="43"></label>
+    <label>Boundary intensity <output id="mountOut">72%</output><input id="mountains" type="range" min="10" max="100" value="72"></label>
+    <label>Microplates <output id="microOut">5</output><input id="micro" type="range" min="0" max="14" value="5"></label>
+  </div>
+  <div class="control-group"><div class="group-title">Dynamics <span>03</span></div>
+    <label>Timeline steps <output id="stepsOut">6</output><input id="steps" type="range" min="1" max="12" value="6"></label>
+    <label>Years / step<input id="years" type="number" min="100000" max="10000000" step="100000" value="500000"></label>
+    <label>Drift strength <output id="driftOut">0.36°</output><input id="drift" type="range" min="5" max="100" value="36"></label>
+  </div>
+  <div class="control-group"><div class="group-title">Output <span>04</span></div>
+    <label>Tile resolution<select id="tileRes"><option value="24">24 × 12</option><option value="36" selected>36 × 18</option><option value="48">48 × 24</option><option value="60">60 × 30</option></select></label>
+    <label>Merge similarity <output id="similarOut">82%</output><input id="similarity" type="range" min="50" max="98" value="82"></label>
+  </div>
+  <button id="export" class="export">Export current world JSON <span>↓</span></button>
+</aside>
+<section class="workspace">
+  <div class="toolbar"><div class="layer-tabs" id="layers"><button class="active" data-layer="terrain">Terrain</button><button data-layer="plates">Plates</button><button data-layer="height">Height</button><button data-layer="temperature">Temperature</button><button data-layer="rain">Rainfall</button><button data-layer="rivers">Rivers</button><button data-layer="tiles">Tiles</button></div><div class="view-tabs"><button class="active" data-view="map">Map</button><button data-view="sphere">3D globe</button></div></div>
+  <div class="canvas-wrap"><canvas id="mapCanvas" width="720" height="360" aria-label="Generated world map"></canvas><canvas id="globeCanvas" width="720" height="480" aria-label="3D spherical source model"></canvas><div class="map-key" id="mapKey"></div><div id="loading" class="loading hidden"><div class="spinner"></div><b id="loadingText">Building spherical topology…</b><small>All fields are sampled on a 3D unit sphere before projection.</small></div></div>
+  <div class="under-map"><div><p class="eyebrow">INDEPENDENT DYNAMIC SNAPSHOTS</p><h2 id="phaseTitle">Step 0 · Initial formation</h2></div><div class="timeline"><div class="timeline-head"><span id="timeLabel">0 years</span><span id="stepLabel">1 / 6</span></div><input id="timeline" type="range" min="0" max="5" value="0"><div class="ticks"><span>FORMATION</span><span>PLATE DRIFT</span><span>FUTURE</span></div></div></div>
+  <div class="metrics" id="metrics"></div>
+  <div class="method"><span>●</span><p><b>Spherical source topology.</b> Plate centers are normalized 3D vectors; distance, collision and drift use great-circle geometry. The displayed map is an equirectangular projection with continuous ±180° longitude.</p></div>
+</section>
+</main><script src="app.js"></script>
+</body></html>
